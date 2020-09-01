@@ -1,0 +1,9 @@
+{
+  "name": "first-rtc-app",
+  "version": "1.0.0",
+  "description": "First Web RTC application",
+  "main": "index.js",
+  "repository": "https://hyunmui@github.com/hyunmui/first-rtc-app.git",
+  "author": "Hyeonmin Seon",
+  "license": "MIT"
+}
