@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebRTC Example</title>
+
+  <style>
+    .container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    video {
+      background: #222;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <video id="video" autoplay playsinline></video>
+  </div>
+
+  <script>
+    'use strict';
+
+    var video = document.getElementById('video');
+
+    function handleSuccess(stream) {
+      // video stream
+      window.stream = stream;
+      video.srcObject = stream;
+
+      // audio stream
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      
+      // Create an AudioNode from the stream
+      var mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
+      // Connect it to destination to hear yourself
+      // or any other node for processing!
+      mediaStreamSource.connect(audioContext.destination);
+
+    }
+
+    function handleError(error) {
+      // console.error('getUserMedia error: ', error);
+      alert('사용할 수 있는 카메라가 없습니다. 장비를 확인하여 주시기 바랍니다.');
+    }
+
+    navigator.getUserMedia({video: true, audio: true}, handleSuccess, handleError);
+  </script>
+</body>
+
+</html>
